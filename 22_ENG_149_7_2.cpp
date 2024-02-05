@@ -23,8 +23,17 @@ void swapApartments(float* x, float* y) { // Function to swap the values of two 
 int main() {
 
 	int numberOfComplexes;
+
 	cout << "Enter the number of housing complexes: ";
 	cin >> numberOfComplexes; // Get the number of housing complexes
+
+	while (cin.fail()) { // Check if the number of housing complexes is an integer value
+		cin.clear();
+		cin.ignore(256, '\n');
+		cout << "Invalid input. Please enter an integer value.\n ";
+		cin >> numberOfComplexes;
+	}
+
 
 	float**** housingComplex = new float*** [numberOfComplexes]; // 4D array to store the details of the housing complexes
 
@@ -35,6 +44,13 @@ int main() {
 		int numberOfApartments;
 		cout << "\nEnter the number of apartments in complex " << char('A' + i) << ": ";
 		cin >> numberOfApartments; // Get the number of apartments in the housing complex
+		
+		while (cin.fail()) { // Check if the number of apartments is an integer value
+			cin.clear();
+			cin.ignore(256, '\n');
+			cout << "Invalid input. Please enter an integer value.\n ";
+			cin >> numberOfApartments;
+		}
 
 		housingComplex[i][1] = new float* [numberOfApartments + 1]; // array to store the details of the apartments in the housing complex
 
@@ -54,7 +70,7 @@ int main() {
 			while (cin.fail()) { // Check if the door is an integer value
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter an integer value. ";
+				cout << "Invalid input. Please enter an integer value.\n";
 				cin >> doors;
 			}
 			housingComplex[i][1][j][0] = doors;
@@ -67,7 +83,7 @@ int main() {
 			while (cin.fail()) {
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter an integer value. ";
+				cout << "Invalid input. Please enter an integer value.\n";
 				cin >> windows;
 			}
 			housingComplex[i][1][j][1] = windows;
@@ -80,7 +96,7 @@ int main() {
 			while (cin.fail()) {
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter an integer value. ";
+				cout << "Invalid input. Please enter an integer value.\n";
 				cin >> rooms;
 			}
 			housingComplex[i][1][j][2] = rooms;
@@ -93,7 +109,7 @@ int main() {
 			while (cin.fail()) {
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter an integer value. ";
+				cout << "Invalid input. Please enter an integer value.\n";
 				cin >> washrooms;
 			}
 			housingComplex[i][1][j][3] = washrooms;
@@ -105,7 +121,7 @@ int main() {
 			while (cin.fail()) { // Check if the floor area is a float value
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter a float value. ";
+				cout << "Invalid input. Please enter a float value.\n";
 				cin >> floorArea;
 			}
 			housingComplex[i][1][j][4] = floorArea;
@@ -117,7 +133,7 @@ int main() {
 			while (cin.fail()) { // Check if the cost is a float value
 				cin.clear();
 				cin.ignore(256, '\n');
-				cout << "Invalid input. Please enter a float value. ";
+				cout << "Invalid input. Please enter a float value.\n";
 				cin >> cost;
 			
 			}
@@ -157,7 +173,7 @@ int main() {
 				break;
 			}
 			else {
-				cout << "Invalid input." << ".\n";
+				cout << "Invalid input." << "\n";
 			}
 		}
 		
@@ -170,7 +186,7 @@ int main() {
 				break;
 			}
 			else {
-				cout << "Invalid input." << ".\n";
+				cout << "Invalid input." << "\n";
 			}
 		}
 
