@@ -145,21 +145,37 @@ int main() {
 
 		cout << "\n*****************************************************" << endl;
 
+		
 		cout << "\nComplex " << selectedComplex << " has " << *housingComplex[selectedComplex - 'A'][1][0] << " apartments.\n"; // Show the number of apartments in the selected complex
 
-		cout << "\nSelect the option to sort the apartments:\n1 - by Floor area\n2 - by Cost" << endl; // Option to sort the apartments based on floor area or cost
-
 		int option;
-		cin >> option;
+		while (true) { // Loop to validate the input for the option
+			cout << "\nSelect the option to sort the apartments:\n1 - by Floor area\n2 - by Cost" << endl; // Option to sort the apartments based on floor area or cost
+			cin >> option;
 
-		cout << "\nSelect the order you want:\n1 - Ascending order\n2 - Descending order" << endl; // Option to select the order of sorting
-
+			if (option == 1 || option == 2) {
+				break;
+			}
+			else {
+				cout << "Invalid input." << ".\n";
+			}
+		}
+		
 		int order;
-		cin >> order;
+		while (true) { // Loop to validate the input for the order
+			cout << "\nSelect the order you want:\n1 - Ascending order\n2 - Descending order" << endl; // Option to select the order of sorting
+			cin >> order;
+		
+			if(order == 1 || order == 2) {
+				break;
+			}
+			else {
+				cout << "Invalid input." << ".\n";
+			}
+		}
 
 		cout << endl;
 
-		
 		float** sortedApartments = new float* [*housingComplex[toupper(selectedComplex) - 'A'][1][0] + 1]; // Create a temporary copy of the apartments for sorting
 		int* originalIndices = new int[*housingComplex[toupper(selectedComplex) - 'A'][1][0] + 1]; // Create an array to store the original indices of the apartments
 
