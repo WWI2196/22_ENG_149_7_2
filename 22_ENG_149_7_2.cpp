@@ -27,7 +27,7 @@ int main() {
 	cout << "Enter the number of housing complexes: ";
 	cin >> numberOfComplexes; // Get the number of housing complexes
 
-	while (cin.fail()) { // Check if the number of housing complexes is an integer value
+	while (cin.fail() || numberOfComplexes == 0) { // Check if the number of housing complexes is a positive integer value
 		cin.clear();
 		cin.ignore(256, '\n');
 		cout << "Invalid input. Please enter an integer value.\n ";
@@ -45,10 +45,10 @@ int main() {
 		cout << "\nEnter the number of apartments in complex " << char('A' + i) << ": ";
 		cin >> numberOfApartments; // Get the number of apartments in the housing complex
 		
-		while (cin.fail()) { // Check if the number of apartments is an integer value
+		while (cin.fail() || numberOfApartments == 0) { // Check if the number of apartments is a positive integer value 
 			cin.clear();
 			cin.ignore(256, '\n');
-			cout << "Invalid input. Please enter an integer value.\n ";
+			cout << "Invalid input. Please enter an positive integer value.\n ";
 			cin >> numberOfApartments;
 		}
 
@@ -114,7 +114,7 @@ int main() {
 			}
 			housingComplex[i][1][j][3] = washrooms;
 
-			cout << "Total floor area\t\t\t: ";
+			cout << "Total floor area(square meters)\t\t: ";
 			float floorArea = 0;
 			cin >> floorArea;
 
@@ -155,7 +155,7 @@ int main() {
 		selectedComplex = toupper(selectedComplex); // Convert the input to uppercase
 
 		if (selectedComplex < 'A' || selectedComplex >= 'A' + numberOfComplexes) { // Check if the input is valid
-			cout << "Invalid input." << ".\n";
+			cout << "Invalid input." << "\n";
 			continue; // Skip the rest of the loop and go back to selecting the complex if the input is invalid
 		}
 
@@ -217,7 +217,7 @@ int main() {
 			cout << "Number of windows\t\t\t: " << sortedApartments[j][1] << "\n";
 			cout << "Number of rooms\t\t\t\t: " << sortedApartments[j][2] << "\n";
 			cout << "Number of washrooms\t\t\t: " << sortedApartments[j][3] << "\n";
-			cout << "Total floor area\t\t\t: " << sortedApartments[j][4] << "\n";
+			cout << "Total floor area(square meters)\t\t: " << sortedApartments[j][4] << "\n";
 			cout << "Estimated building cost(millions)\t: " << sortedApartments[j][5] << "\n";
 		}
 
@@ -232,7 +232,7 @@ int main() {
 		char continueLooking;
 		cin>>continueLooking;
 
-		if (continueLooking == 'n') {
+		if (tolower(continueLooking) != 'y') {
 			break;
 		}
 	}
