@@ -2,17 +2,18 @@
 using namespace std;
 
 void swapApartments(float* a, float* b);
-void copyApartment(float* dest, float* src);
+void copyApartment(float* copy, float* arrayToCopy);
 
-void copyApartment(float* dest, float* src) {
+void copyApartment(float* copy, float* arrayToCopy) {
 	for (int i = 0; i < 6; i++) {
-		dest[i] = src[i];
+		copy[i] = arrayToCopy[i];
 	}
 }
 
 // Function to swap two apartments
 void swapApartments(float* a, float* b) {
 	float temp[6];
+
 	for (int i = 0; i < 6; i++) {
 		temp[i] = a[i];
 		a[i] = b[i];
@@ -45,24 +46,24 @@ int main() {
 
 			housingComplex[i][1][j] = new float[6];
 
-			cout << "Enter the details for apartment " << j << " in complex " << char('A' + i) << ":\n";
+			cout << "\nEnter the details for apartment " << j << " in complex " << char('A' + i) << ":\n";
 
-			cout << "Number of doors: ";
+			cout << "Number of doors\t: ";
 			cin >> housingComplex[i][1][j][0];
 
-			cout << "Number of windows: ";
+			cout << "Number of windows\t: ";
 			cin >> housingComplex[i][1][j][1];
 
-			cout << "Number of rooms: ";
+			cout << "Number of rooms\t: ";
 			cin >> housingComplex[i][1][j][2];
 
-			cout << "Number of washrooms: ";
+			cout << "Number of washrooms\t: ";
 			cin >> housingComplex[i][1][j][3];
 
-			cout << "Total floor area: ";
+			cout << "Total floor area\t: ";
 			cin >> housingComplex[i][1][j][4];
 
-			cout << "Estimated building cost: ";
+			cout << "Estimated building cost\t: ";
 			cin >> housingComplex[i][1][j][5];
 		}
 	}
@@ -71,15 +72,22 @@ int main() {
 		cout << endl;
 		cout << "Choose to see the details from the following available complexes:" << endl;
 		for (int i = 0; i < numberOfComplexes; i++) {
-			cout << i + 1 << "." << "For Complex " << char('A' + i) << " select " << char('A' + i) << endl;
+			cout << i + 1 << "-" << "For Complex " << char('A' + i) << " select " << char('A' + i) << endl;
 		}
 
 		char selectedComplex;
 		cin >> selectedComplex;
+		selectedComplex = toupper(selectedComplex);
 
 		// Display the details of all apartments in all complexes
 
-		cout << "\nComplex " << char(toupper(selectedComplex)) << " has " << *housingComplex[toupper(selectedComplex) - 'A'][1][0] << " apartments.\n";
+		if (selectedComplex < 'A' || selectedComplex >= 'A' + numberOfComplexes) {
+			cout << "Invalid input." << ".\n";
+			continue; // Skip the rest of the loop and go back to the start
+		}
+
+		// Now it's safe to access the housingComplex array
+		cout << "\nComplex " << selectedComplex << " has " << *housingComplex[selectedComplex - 'A'][1][0] << " apartments.\n";
 
 		cout << "Select the option to sort the apartments;\n 1 - by Floor area\n 2 - by Cost" << endl;
 
@@ -105,8 +113,8 @@ int main() {
 		// Sort the apartments
 		for (int i = 1; i <= *housingComplex[toupper(selectedComplex) - 'A'][1][0]; i++) {
 			for (int j = i + 1; j <= *housingComplex[toupper(selectedComplex) - 'A'][1][0]; j++) {
-				if ((order == 1 && sortedApartments[i][option + 3] > sortedApartments[j][option + 3]) ||
-					(order == 2 && sortedApartments[i][option + 3] < sortedApartments[j][option + 3])) {
+				if ((order == 1 && sortedApartments[i][option == 1 ? 4 : 5] > sortedApartments[j][option == 1 ? 4 : 5]) ||
+					(order == 2 && sortedApartments[i][option == 1 ? 4 : 5] < sortedApartments[j][option == 1 ? 4 : 5])) {
 					swapApartments(sortedApartments[i], sortedApartments[j]);
 					swap(originalIndices[i], originalIndices[j]);
 				}
@@ -116,12 +124,12 @@ int main() {
 		// Print the sorted apartments
 		for (int j = 1; j <= *housingComplex[toupper(selectedComplex) - 'A'][1][0]; j++) {
 			cout << "\nDetails for apartment " << originalIndices[j] << ":\n";
-			cout << "Number of doors: " << sortedApartments[j][0] << "\n";
-			cout << "Number of windows: " << sortedApartments[j][1] << "\n";
-			cout << "Number of rooms: " << sortedApartments[j][2] << "\n";
-			cout << "Number of washrooms: " << sortedApartments[j][3] << "\n";
-			cout << "Total floor area: " << sortedApartments[j][4] << "\n";
-			cout << "Estimated building cost: " << sortedApartments[j][5] << "\n";
+			cout << "Number of doors\t: " << sortedApartments[j][0] << "\n";
+			cout << "Number of windows\t: " << sortedApartments[j][1] << "\n";
+			cout << "Number of rooms\t: " << sortedApartments[j][2] << "\n";
+			cout << "Number of washrooms\t: " << sortedApartments[j][3] << "\n";
+			cout << "Total floor area\t: " << sortedApartments[j][4] << "\n";
+			cout << "Estimated building cost\t: " << sortedApartments[j][5] << "\n";
 		}
 
 		//delete sortedApartments
