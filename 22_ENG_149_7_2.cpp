@@ -48,22 +48,80 @@ int main() {
 			cout << "\nEnter the details for apartment " << j << " in complex " << char('A' + i) << ":\n";
 
 			cout << "Number of doors\t\t\t\t: "; 
-			cin >> housingComplex[i][1][j][0];
+			int doors = 0;
+			cin>> doors;
+
+			while (cin.fail()) { // Check if the door is an integer value
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter an integer value. ";
+				cin >> doors;
+			}
+			housingComplex[i][1][j][0] = doors;
+			
 
 			cout << "Number of windows\t\t\t: ";
-			cin >> housingComplex[i][1][j][1];
+			int windows = 0;
+			cin >> windows;
+
+			while (cin.fail()) {
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter an integer value. ";
+				cin >> windows;
+			}
+			housingComplex[i][1][j][1] = windows;
+			
 
 			cout << "Number of rooms\t\t\t\t: ";
-			cin >> housingComplex[i][1][j][2];
+			int rooms = 0;
+			cin >> rooms;
+
+			while (cin.fail()) {
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter an integer value. ";
+				cin >> rooms;
+			}
+			housingComplex[i][1][j][2] = rooms;
+			
 
 			cout << "Number of washrooms\t\t\t: ";
-			cin >> housingComplex[i][1][j][3];
+			int washrooms = 0;
+			cin >> washrooms;
+
+			while (cin.fail()) {
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter an integer value. ";
+				cin >> washrooms;
+			}
+			housingComplex[i][1][j][3] = washrooms;
 
 			cout << "Total floor area\t\t\t: ";
-			cin >> housingComplex[i][1][j][4];
+			float floorArea = 0;
+			cin >> floorArea;
+
+			while (cin.fail()) { // Check if the floor area is a float value
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter a float value. ";
+				cin >> floorArea;
+			}
+			housingComplex[i][1][j][4] = floorArea;
 
 			cout << "Estimated building cost(millions)\t: ";
-			cin >> housingComplex[i][1][j][5];
+			float cost = 0;
+			cin >> cost;
+
+			while (cin.fail()) { // Check if the cost is a float value
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << "Invalid input. Please enter a float value. ";
+				cin >> cost;
+			
+			}
+			housingComplex[i][1][j][5] = cost;
 		}
 	}
 
