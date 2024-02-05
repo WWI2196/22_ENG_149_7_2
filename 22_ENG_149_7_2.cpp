@@ -43,11 +43,11 @@ int main() {
 
 		for (int j = 1; j <= numberOfApartments; j++) { // Start from 1 as 0 is used to store the total number of apartments in a complex
 
-			housingComplex[i][1][j] = new float[6];
+			housingComplex[i][1][j] = new float[6]; // space to store the details of each apartment
 
 			cout << "\nEnter the details for apartment " << j << " in complex " << char('A' + i) << ":\n";
 
-			cout << "Number of doors\t\t\t\t: ";
+			cout << "Number of doors\t\t\t\t: "; 
 			cin >> housingComplex[i][1][j][0];
 
 			cout << "Number of windows\t\t\t: ";
@@ -68,31 +68,33 @@ int main() {
 	}
 
 	while (true) {
+
 		cout << endl;
+
 		cout << "\nChoose to see the details from the following available complexes:" << endl;
 		for (int i = 0; i < numberOfComplexes; i++) {
 			cout << char('A' + i) << "-" << "For Complex " << char('A' + i) << endl;
 		}
 
 		char selectedComplex;
-		cin >> selectedComplex;
-		selectedComplex = toupper(selectedComplex);
+		cin >> selectedComplex; // Input for the complex letter
+		selectedComplex = toupper(selectedComplex); // Convert the input to uppercase
 
-		if (selectedComplex < 'A' || selectedComplex >= 'A' + numberOfComplexes) {
+		if (selectedComplex < 'A' || selectedComplex >= 'A' + numberOfComplexes) { // Check if the input is valid
 			cout << "Invalid input." << ".\n";
-			continue; // Skip the rest of the loop and go back to selecting the complex
+			continue; // Skip the rest of the loop and go back to selecting the complex if the input is invalid
 		}
 
 		cout << "\n*****************************************************" << endl;
 
-		cout << "\nComplex " << selectedComplex << " has " << *housingComplex[selectedComplex - 'A'][1][0] << " apartments.\n";
+		cout << "\nComplex " << selectedComplex << " has " << *housingComplex[selectedComplex - 'A'][1][0] << " apartments.\n"; // Show the number of apartments in the selected complex
 
-		cout << "\nSelect the option to sort the apartments:\n1 - by Floor area\n2 - by Cost" << endl;
+		cout << "\nSelect the option to sort the apartments:\n1 - by Floor area\n2 - by Cost" << endl; // Option to sort the apartments based on floor area or cost
 
 		int option;
 		cin >> option;
 
-		cout << "\nSelect the order you want:\n1 - Ascending order\n2 - Descending order" << endl;
+		cout << "\nSelect the order you want:\n1 - Ascending order\n2 - Descending order" << endl; // Option to select the order of sorting
 
 		int order;
 		cin >> order;
@@ -105,7 +107,7 @@ int main() {
 
 		for (int j = 1; j <= *housingComplex[toupper(selectedComplex) - 'A'][1][0]; j++) {
 			sortedApartments[j] = new float[6];
-			copyApartment(sortedApartments[j], housingComplex[toupper(selectedComplex) - 'A'][1][j]);
+			copyApartment(sortedApartments[j], housingComplex[toupper(selectedComplex) - 'A'][1][j]); // Copy the values of the apartments to the temporary copy
 			originalIndices[j] = j;
 		}
 
